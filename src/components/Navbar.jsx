@@ -1,28 +1,36 @@
-import React from 'react'
+import React, { Component } from 'react'
 import "../styles/Navbar.css"
 
+class Navbar extends Component {
 
-const Navbar = () => {
-  return (
-    <>
-      <nav>
-      <img src="https://www.festifyer.com/storage/system/6fYpjT6r6ugsHt5aYXOm59JeRHk7OslnDU3yktbl.png" alt="alternative"/>
-        <div>
-          <ul id='navbar' >
-            <li><a href="/">Blogs</a></li>
-            <li><a href="/">Contact</a></li>
-            <button>Login</button>
-            
-          </ul>
-        </div>
+  state = { clicked: false };
+  handleclick = ()=>{
+    this.setState({clicked: !this.state.clicked});
+  }
 
-        <div id="mobile" >
-          <i id='bar' ></i>
-          {/* <i class='bx bx-x'></i> */}
-        </div>
-      </nav>
-    </>
-  )
+  render() {
+
+    return (
+      <>
+        <nav>
+        <img src="https://www.festifyer.com/storage/system/6fYpjT6r6ugsHt5aYXOm59JeRHk7OslnDU3yktbl.png" alt="alternative" className='logo'/>
+          <div>
+            <ul id='navbar' className={this.state.clicked  ? "#navbar active" : "#navbar"}>
+              <li><a href="/">Blogs</a></li>
+              <li><a href="/">Contact</a></li>
+              <li><a href="/"><button id='btn'>Login</button></a></li>
+              
+            </ul>
+          </div>
+
+          <div id="mobile" onClick={this.handleclick}>
+            <i id='bar' className={this.state.clicked ? "bx bx-x" : "bx bx-menu"}></i>
+            {/* <i class='bx bx-x'></i> */}
+          </div>
+        </nav>
+      </>
+    )
+  }
 }
 
-export default Navbar;
+export default Navbar
